@@ -1,1 +1,34 @@
 rootProject.name = 'boot3Scaffold'
+
+dependencyResolutionManagement {
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        maven { url 'https://maven.aliyun.com/repository/spring/' }
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url 'https://repo.spring.io/release' }
+        mavenCentral()
+    }
+
+    versionCatalogs {
+        libs {
+            version('springBootVersion', '3.3.2')
+            version('lombok', '1.18.32')
+
+            plugin('boot-starter', 'org.springframework.boot').versionRef('springBootVersion')
+            plugin('dependency-management', 'io.spring.dependency-management').version('1.1.6')
+
+            //------------------------------------------------------boot----------------------------------------------------------//
+            library('spring-boot-dependencies', 'org.springframework.boot', 'spring-boot-dependencies').versionRef('springBootVersion')
+            library('spring-boot-starter', 'org.springframework.boot', 'spring-boot-starter').versionRef('springBootVersion')
+            library('web', 'org.springframework.boot', 'spring-boot-starter-web').versionRef('springBootVersion')
+
+            //------------------------------------------------------数据库----------------------------------------------------------//
+            library('mongodb', 'org.springframework.boot', 'spring-boot-starter-data-mongodb').versionRef('springBootVersion')
+            library('jdbc', 'org.springframework.boot', 'spring-boot-starter-data-jdbc').versionRef('springBootVersion')
+
+            //------------------------------------------------------工具类----------------------------------------------------------//
+            library('lombok', 'org.projectlombok', 'lombok').versionRef('lombok')
+        }
+    }
+
+}
