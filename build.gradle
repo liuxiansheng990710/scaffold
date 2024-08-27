@@ -20,7 +20,7 @@ dependencies {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
     implementation (libs.mongodb) {
-        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+//        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
     api (libs.web) {
 //        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'

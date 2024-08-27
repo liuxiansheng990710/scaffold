@@ -11,3 +11,8 @@ spring:
       auto-index-creation: true
       field-naming-strategy: org.springframework.data.mapping.model.SnakeCaseFieldNamingStrategy
       uri: mongodb://21:21@47.120.38.241:27017
+
+logging:
+  level:
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+    org.mongodb.driver.protocol.command: DEBUG
