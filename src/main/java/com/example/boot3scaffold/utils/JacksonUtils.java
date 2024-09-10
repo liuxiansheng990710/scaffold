@@ -17,6 +17,9 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
+import com.example.boot3scaffold.config.third.jackson.deserializer.DateStrDeserializer;
+import com.example.boot3scaffold.config.third.jackson.serializer.DateToNumberSerializer;
+import com.example.boot3scaffold.exceptions.CommonUtilsException;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -28,6 +31,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+import cn.hutool.core.date.DatePattern;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -104,8 +108,7 @@ public abstract class JacksonUtils {
      */
     public static Consumer<HttpMessageConverter<?>> wrapperObjectMapper() {
         return converter -> {
-            if (converter instanceof MappingJackson2HttpMessageConverter) {
-                MappingJackson2HttpMessageConverter httpMessageConverter = (MappingJackson2HttpMessageConverter) converter;
+            if (converter instanceof MappingJackson2HttpMessageConverter httpMessageConverter) {
                 setUpJacksonHttpMessageConverter(httpMessageConverter);
             }
         };
