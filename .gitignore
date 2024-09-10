@@ -157,6 +157,6 @@ logs
 build
 .gradle
 out
-gradle
+#gradle
 *.hprof
 **/generated/**/*StructConvertImpl.java
