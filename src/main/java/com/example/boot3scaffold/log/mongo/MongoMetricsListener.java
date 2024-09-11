@@ -2,6 +2,7 @@ package com.example.boot3scaffold.log.mongo;
 
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.apache.commons.text.StringEscapeUtils;
@@ -57,7 +58,12 @@ public class MongoMetricsListener implements CommandListener {
         String sql = buildMongoCommand(commandName, collection, event.getCommand());
         MongoLog mongoLog = new MongoLog();
         //多个连续空白字符（空格、制表符、换行符等）替换为单个空格
-        mongoLog.setSql(sql.replaceAll("[\\s]+", " "));
+        sql = Pattern.compile("[\\s]+").matcher(sql).replaceAll(" ");
+        // 替换日期的 $date 为 ISODate
+        sql = Pattern.compile("\\{\"\\$date\":\\s*\"([^\"]+?)\"\\}").matcher(sql).replaceAll("ISODate(\"$1\")");
+        // 替换 ObjectId 的 $oid 为 ObjectId
+        sql = Pattern.compile("\\{\"\\$oid\":\\s*\"([^\"]+?)\"\\}").matcher(sql).replaceAll("ObjectId(\"$1\")");
+        mongoLog.setSql(sql);
         mongoLog.setDataBase(event.getDatabaseName());
         mongoLog.setCollection(collection);
         mongoLog.setSqlType(commandName);
@@ -94,7 +100,10 @@ public class MongoMetricsListener implements CommandListener {
         return switch (commandName) {
             case "insert" -> {
                 BsonArray documents = command.getArray("documents");
-                yield "db.getCollection(\"+" + collection + "\").insert( " + documents.toString() + " );";
+                yield documents.stream()
+                        .map(document -> "db.getCollection(\"" + collection + "\").insert( "
+                                + document.asDocument().toJson() + " );")
+                        .collect(Collectors.joining("\n"));
             }
             case "update" -> {
                 BsonArray updates = command.getArray("updates");
