@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.bson.BsonArray;
 import org.bson.BsonDocument;
 
@@ -72,7 +73,7 @@ public class MongoMetricsListener implements CommandListener {
         MongoLog mongoLog = commandThreadLocal.get();
         mongoLog.setRunTime(event.getElapsedTime(TimeUnit.MILLISECONDS) + "ms");
         mongoLog.setSuccess(Boolean.TRUE);
-//        log.info(MongoLog.LOG_PREFIX + StringEscapeUtils.unescapeJava(JacksonUtils.toJson(mongoLog)));
+        log.info(MongoLog.LOG_PREFIX + StringEscapeUtils.unescapeJava(JacksonUtils.toJson(mongoLog)));
         commandThreadLocal.remove();
     }
 
