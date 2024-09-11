@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.example.boot3scaffold.database.mongo.MongoService;
-import com.example.boot3scaffold.database.mongo.MongoServiceImpl;
+import com.example.boot3scaffold.database.mongo.service.MongoService;
+import com.example.boot3scaffold.database.mongo.service.MongoServiceImpl;
 import com.example.boot3scaffold.model.entities.mongo.MongoTest;
 
 @Service

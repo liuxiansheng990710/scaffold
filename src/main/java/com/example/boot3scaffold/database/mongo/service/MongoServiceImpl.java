@@ -1,4 +1,4 @@
-package com.example.boot3scaffold.database.mongo;
+package com.example.boot3scaffold.database.mongo.service;
 
 import java.util.Optional;
 
@@ -31,10 +31,12 @@ public class MongoServiceImpl<T, ID, R extends MongoRepository<T, ID>> implement
     protected MongoTemplate mongoTemplate;
 
 
+    @Override
     public <S extends T> S save(S entity) {
         return baseRepository.save(entity);
     }
 
+    @Override
     public <S extends T> Iterable<S> saveAll(Iterable<S> entities) {
         return baseRepository.saveAll(entities);
     }

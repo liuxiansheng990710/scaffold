@@ -20,12 +20,24 @@ dependencies {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
     implementation (libs.mongodb) {
-//        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
     api (libs.web) {
 //        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
+    implementation libs.disruptor
+    implementation libs.log4j2
+    implementation libs.jackson.databind
+    implementation libs.jackson.jsr310
+    implementation libs.modelMapper
+    implementation libs.fastjson2
+    implementation libs.hutool
+    implementation libs.google.guava
+    implementation libs.commons.lang3
+    implementation libs.commons.text
+
+
     api libs.lombok
     annotationProcessor libs.lombok
 //    implementation libs.jdbc

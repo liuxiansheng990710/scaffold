@@ -3,7 +3,7 @@ package com.example.boot3scaffold.model.entities.mongo;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.example.boot3scaffold.database.mongo.BaseMongoModel;
+import com.example.boot3scaffold.database.mongo.model.BaseMongoModel;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -1,4 +1,4 @@
-package com.example.boot3scaffold.database.mongo;
+package com.example.boot3scaffold.database.mongo.service;
 
 import java.util.Optional;
 

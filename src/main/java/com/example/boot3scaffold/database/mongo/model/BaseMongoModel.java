@@ -1,4 +1,4 @@
-package com.example.boot3scaffold.database.mongo;
+package com.example.boot3scaffold.database.mongo.model;
 
 import java.io.Serial;
 import java.io.Serializable;
