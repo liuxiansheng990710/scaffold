@@ -96,6 +96,7 @@ public abstract class JacksonUtils {
         simpleModule.addSerializer(Date.class, DateToNumberSerializer.instance);
         SimpleDateFormat dateFormat = new SimpleDateFormat(DatePattern.NORM_DATETIME_PATTERN);
         DateStrDeserializer dateDeserializer = new DateStrDeserializer(DateDeserializers.DateDeserializer.instance, dateFormat, DatePattern.NORM_DATETIME_PATTERN);
+        //Date 使用自定义反序列化
         simpleModule.addDeserializer(Date.class, dateDeserializer);
         objectMapper.registerModule(simpleModule);
         return objectMapper;
