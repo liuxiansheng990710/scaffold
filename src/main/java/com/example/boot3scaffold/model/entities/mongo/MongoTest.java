@@ -1,5 +1,7 @@
 package com.example.boot3scaffold.model.entities.mongo;
 
+import java.math.BigInteger;
+
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -13,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Document("mongo_test")
-public class MongoTest extends BaseMongoModel<Long> {
+public class MongoTest extends BaseMongoModel<BigInteger> {
 
     @Indexed
     private Long uid;

@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
  * mongo基础Model类
  * </p>
  * <p>
- * 需要将ID（用于替换默认的_id）类型传入 默认为Object
+ * 需要将ID（用于替换默认的_id）类型传入 默认为Long
  * </P>
  *
  * @author : 21
@@ -35,8 +35,11 @@ public class BaseMongoModel<ID> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 自定义id，如果使用此id，则保存方法会视为update类型
-     * 且与自定义创建时间冲突O
+     * 自定义id，如果使用此id，
+     * 若手动填充该值：则保存方法会视为update类型，且与自定义创建时间、创建人冲突（无法自动填充）
+     * 若不填充该值：会默认填充19位雪花ID，且不影响自定义创建时间与创建人
+     * {@link com.example.boot3scaffold.database.mongo.config.MongoCompositeKeyFillCallbck#onBeforeConvert}
+     *
      */
     @Id
     protected ID id;
@@ -47,7 +50,7 @@ public class BaseMongoModel<ID> implements Serializable {
 
     /**
      * 创建人
-     * 注意：这里如果使用自定义id的话，会导致创建人失效
+     * 注意：这里如果手动填充id的话，会导致创建人失效
      */
     @CreatedBy
     public String createBy;
@@ -60,7 +63,7 @@ public class BaseMongoModel<ID> implements Serializable {
 
     /**
      * 创建时间
-     * 注意：这里如果使用自定义id的话，会导致创建时间失效
+     * 注意：这里如果手动填充id的话，会导致创建时间失效
      */
     @CreatedDate
     public Date createTime;

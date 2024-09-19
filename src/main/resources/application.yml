@@ -5,6 +5,9 @@ spring:
   application:
     name: boot3Scaffold
 
+  profiles:
+    active: alpha
+
   data:
     mongodb:
       database: alpha

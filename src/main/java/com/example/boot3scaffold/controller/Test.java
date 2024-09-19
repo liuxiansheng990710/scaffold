@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.boot3scaffold.model.entities.mongo.MongoTest;
+import com.example.boot3scaffold.utils.JacksonUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,17 +31,15 @@ public class Test {
         MongoTest mongoTest = new MongoTest();
         mongoTest.setName("666");
         mongoTest.setUid(333L);
-        mongoTest.setId(666L);
 //        service.save(mongoTest);
         MongoTest mongoTest2 = new MongoTest();
-        mongoTest2.setId(777L);
         mongoTest2.setUid(777L);
         mongoTest2.setName("21");
         List<MongoTest> objects = new ArrayList<>();
         objects.add(mongoTest);
         objects.add(mongoTest2);
         service.saveAll(objects);
-        return mongoTests.toString();
+        return JacksonUtils.toJson(mongoTests);
     }
 
 }
