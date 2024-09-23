@@ -30,6 +30,7 @@ dependencyResolutionManagement {
             library('spring-boot-starter', 'org.springframework.boot', 'spring-boot-starter').versionRef('springBootVersion')
             library('web', 'org.springframework.boot', 'spring-boot-starter-web').versionRef('springBootVersion')
             library('log4j2', 'org.springframework.boot', 'spring-boot-starter-log4j2').versionRef('springBootVersion')
+            library('undertow', 'org.springframework.boot', 'spring-boot-starter-undertow').versionRef('springBootVersion')
 
             //------------------------------------------------------数据库----------------------------------------------------------//
             library('mongodb', 'org.springframework.boot', 'spring-boot-starter-data-mongodb').versionRef('springBootVersion')
